@@ -1,7 +1,9 @@
 package com.zog.tex.bib.tokenizing.services;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,8 +172,11 @@ public class BibTokenServiceImpl implements BibTokenService {
 				case AFTER_PROPVAL:
 					if (',' == character) {
 						state = State.READ_PROPKEY;
-					} else
+					} else if('}' == character) {
+						state = State.READ_ENTRY;
+					} else {
 						throw new BibParseException(charCounter);
+					}
 					break;
 				default:
 					break;
@@ -184,6 +189,12 @@ public class BibTokenServiceImpl implements BibTokenService {
 		}
 
 		return bibTokens;
+	}
+
+	@Override
+	public Iterable<BibToken> tokenize(String input) {
+		InputStream textStream = new ByteArrayInputStream(input.getBytes(Charset.forName("UTF-8")));
+		return tokenize(textStream);
 	}
 
 }

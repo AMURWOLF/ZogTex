@@ -1,7 +1,8 @@
 package com.zog.tex.bib.ui.editor.editors;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.widgets.Composite;
@@ -13,12 +14,15 @@ import org.eclipse.ui.part.EditorPart;
 
 import com.zog.tex.bib.ui.editor.Activator;
 import com.zog.tex.contracts.bib.model.entities.BibModel;
-import com.zog.tex.contracts.bib.model.exceptions.BibParseException;
 import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.util.nanoservice.NanoservicesRegistry;
+import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
 
 
-public class BibEditor extends EditorPart {
+public class BibEditor extends EditorPart implements PropertyChangeListener {
+
+	// Nanoservices
+	BibModelService bibParser = Activator.getNanoservice(BibModelService.class);
+	BibTokenService bibTokenizer = Activator.getNanoservice(BibTokenService.class);
 
 	private BibModel model;
 	private EditorUI ui;
@@ -26,6 +30,7 @@ public class BibEditor extends EditorPart {
 	public BibEditor() {
 		super();
 		ui = new EditorUI();
+		ui.addPropertyChangeListener(this);
 	}
 
 	@Override
@@ -37,22 +42,19 @@ public class BibEditor extends EditorPart {
 		setTitleToolTip(input.getToolTipText());
 
 		IPath path = ((IPathEditorInput) input).getPath();
-		try {
-			NanoservicesRegistry importedServices = Activator.getNanoservicesRegistry();
-			var bibFileParser = importedServices.getNanoservice(BibModelService.class);
-			model = bibFileParser.parse(new FileInputStream(path.toFile()));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (BibParseException e) {
+		try (var stream = new FileInputStream(path.toFile())) {
+			model = bibParser.parse(stream);
+			ui.setModel(model);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
 	public void createPartControl(Composite parent) {
-		ui.setModel(model);
 		ui.createUI(parent);
+		getSite().registerContextMenu(ui.getMenuManager(), ui.getTable());
+		getSite().setSelectionProvider(ui.getTable());
 	}
 
 	@Override
@@ -62,7 +64,7 @@ public class BibEditor extends EditorPart {
 
 	@Override
 	public void doSave(IProgressMonitor arg0) {
-
+		ui.save(((IPathEditorInput) getEditorInput()).getPath().toFile());
 	}
 
 	@Override
@@ -78,12 +80,29 @@ public class BibEditor extends EditorPart {
 
 	@Override
 	public boolean isDirty() {
-		return false;
+		return ui.isDirty();
 	}
 
 	@Override
 	public boolean isSaveAsAllowed() {
 		return false;
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getSource() == ui) {
+			if ("dirty".equals(evt.getPropertyName())) {
+				firePropertyChange(PROP_DIRTY);
+			}
+		}
+	}
+	
+	public BibModel getModel() {
+		return model;
+	}
+
+	public EditorUI getUi() {
+		return ui;
 	}
 
 }

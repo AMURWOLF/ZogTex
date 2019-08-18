@@ -7,6 +7,7 @@ import org.osgi.framework.BundleContext;
 import com.zog.tex.contracts.bib.model.services.BibModelService;
 import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
 import com.zog.tex.contracts.resources.services.ResourceStreamService;
+import com.zog.tex.contracts.util.nanoservice.Nanoservice;
 import com.zog.tex.contracts.util.nanoservice.NanoservicesRegistry;
 
 public class Activator extends AbstractUIPlugin {
@@ -44,8 +45,8 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
-
-	public static NanoservicesRegistry getNanoservicesRegistry() {
-		return nanoservicesRegistry;
+	
+	public static <T extends Nanoservice> T getNanoservice(Class<T> Clazz) {
+		return nanoservicesRegistry.getNanoservice(Clazz);
 	}
 }

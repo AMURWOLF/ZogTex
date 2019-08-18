@@ -13,4 +13,108 @@
          </editor>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.zog.tex.bib.ui.editor.commands.category"
+            name="BibTex Editor Category">
+      </category>
+      <command
+            categoryId="com.zog.tex.bib.ui.editor.commands.category"
+            id="com.zog.tex.bib.ui.editor.commands.addEntryCommand"
+            name="Add BibTex Entry">
+      </command>
+      <command
+            categoryId="com.zog.tex.bib.ui.editor.commands.category"
+            id="com.zog.tex.bib.ui.editor.commands.removeEntryCommand"
+            name="Remove BibTex Entry">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.zog.tex.bib.ui.editor.handlers.AddEntryHandler"
+            commandId="com.zog.tex.bib.ui.editor.commands.addEntryCommand">
+      </handler>
+      <handler
+            class="com.zog.tex.bib.ui.editor.handlers.RemoveEntryHandler"
+            commandId="com.zog.tex.bib.ui.editor.commands.removeEntryCommand">
+      </handler>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.zog.tex.bib.ui.editor.commands.addEntryCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+6">
+      </key>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="com.zog.tex.bib.ui.editor.menus.mainMenu"
+               label="BibTex Editor"
+               mnemonic="M">
+            <command
+                  commandId="com.zog.tex.bib.ui.editor.commands.addEntryCommand"
+                  icon="icons/plus_16.png"
+                  id="com.zog.tex.bib.ui.editor.menus.addEntryCommand"
+                  label="Add BibTex Entry"
+                  mnemonic="S">
+            </command>
+            <command
+                  commandId="com.zog.tex.bib.ui.editor.commands.removeEntryCommand"
+                  icon="icons/minus_16.png"
+                  id="com.zog.tex.bib.ui.editor.menus.removeEntryCommand"
+                  label="Remove BibTex Entry"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.zog.tex.bib.ui.editor.toolbars.mainToolbar">
+            <command
+                  commandId="com.zog.tex.bib.ui.editor.commands.addEntryCommand"
+                  icon="icons/plus_16.png"
+                  id="com.zog.tex.bib.ui.editor.toolbars.addEntryCommand"
+                  label="Add BibTex Entry"
+                  style="push"
+                  tooltip="Add BibTex Entry">
+            </command>
+            <command
+                  commandId="com.zog.tex.bib.ui.editor.commands.removeEntryCommand"
+                  icon="icons/minus_16.png"
+                  id="com.zog.tex.bib.ui.editor.toolbars.addEntryCommand"
+                  label="Remove BibTex Entry"
+                  style="push"
+                  tooltip="Remove BibTex Entry">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.zog.tex.bib.ui.editor.editors.BibEditor?after=additions">
+         <command
+               commandId="com.zog.tex.bib.ui.editor.commands.addEntryCommand"
+               icon="icons/plus_16.png"
+               label="Add Entry"
+               style="push">
+         </command>
+         <command
+               commandId="com.zog.tex.bib.ui.editor.commands.removeEntryCommand"
+               icon="icons/minus_16.png"
+               label="Remove Entry"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   
 </plugin>

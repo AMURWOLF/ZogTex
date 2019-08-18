@@ -10,7 +10,7 @@ import java.util.TreeMap;
  */
 public class BibEntry {
 
-	String type;                     // article, incollection, book...
+	String type = "unknown";         // article, incollection, book...
 	String citeKey;                  // similar to id, some word like "ShSm:754"
 	Map<String, String> propertyMap; // any subset of about 20 different properties and corresponding values
 

@@ -11,4 +11,6 @@ import com.zog.tex.contracts.util.nanoservice.Nanoservice;
 public interface BibTokenService extends Nanoservice {
 
 	Iterable<BibToken> tokenize(InputStream input);
+	
+	Iterable<BibToken> tokenize(String input);
 }

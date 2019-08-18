@@ -13,21 +13,21 @@ public class NanoservicesRegistry {
 
 	private Map<Class<? extends Nanoservice>, Nanoservice> servicesMap = new HashMap<>();
 	private BundleContext context;
-	
+
 	public NanoservicesRegistry(BundleContext context) {
 		this.context = context;
 	}
-	
+
 	public void ImportNanoservice(Class<? extends Nanoservice> contract) {
 		ServiceReference<? extends Nanoservice> reference = context.getServiceReference(contract);
 		Nanoservice realization = context.getService(reference);
 		servicesMap.put(contract, realization);
 	}
-	
+
 	public <T extends Nanoservice> void ExportNanoservice(Class<T> contract, T realization) {
 		context.registerService(contract, realization, null);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public <T extends Nanoservice> T getNanoservice(Class<T> Clazz) {
 		Nanoservice service = servicesMap.get(Clazz);

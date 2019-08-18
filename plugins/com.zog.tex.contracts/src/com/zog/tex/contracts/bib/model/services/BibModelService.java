@@ -11,4 +11,6 @@ import com.zog.tex.contracts.util.nanoservice.Nanoservice;
 public interface BibModelService extends Nanoservice {
 
 	BibModel parse(InputStream input);
+	
+	BibModel parse(String input);
 }

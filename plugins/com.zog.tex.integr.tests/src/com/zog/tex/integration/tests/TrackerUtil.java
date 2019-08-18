@@ -4,14 +4,16 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
-public class TrackerUtil {
+import com.zog.tex.contracts.util.nanoservice.Nanoservice;
 
-	static <T> T getServiceByTracker(Class<?> integrTestClass, Class<T> nanoClass) {
+public class TrackerUtil {
+	
+	static <T extends Nanoservice> T getServiceByTracker(Class<?> integrTestClass, Class<T> nanoClass) {
 		Bundle bundle = FrameworkUtil.getBundle(integrTestClass);
 		if (bundle == null) {
 			throw new RuntimeException("Bundle not found");
 		}
-		
+
 		ServiceTracker<T, T> st = new ServiceTracker<>(bundle.getBundleContext(), nanoClass, null);
 		st.open();
 		try {
