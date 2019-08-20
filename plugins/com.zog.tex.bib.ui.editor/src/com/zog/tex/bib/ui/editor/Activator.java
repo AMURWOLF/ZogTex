@@ -4,11 +4,11 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
-import com.zog.tex.contracts.resources.services.ResourceStreamService;
-import com.zog.tex.contracts.util.nanoservice.Nanoservice;
-import com.zog.tex.contracts.util.nanoservice.NanoservicesRegistry;
+import com.zog.core.contracts.resources.nanoservices.ResourceStreamService;
+import com.zog.core.osgi.nanoservices.Nanoservice;
+import com.zog.core.osgi.nanoservices.NanoservicesRegistry;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 
 public class Activator extends AbstractUIPlugin {
 

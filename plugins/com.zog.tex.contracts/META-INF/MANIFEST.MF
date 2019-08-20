@@ -1,17 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: TeX Contracts
-Bundle-SymbolicName: com.zog.tex.contracts;singleton:=true
-Bundle-Version: 0.0.0.qualifier
+Bundle-Name: Zog TeX Contracts
+Bundle-SymbolicName: com.zog.tex.bib.contracts;singleton:=true
+Bundle-Version: 0.0.0
 Bundle-Vendor: ZOG
 Automatic-Module-Name: com.zog.tex.contracts
 Bundle-RequiredExecutionEnvironment: JavaSE-10
-Export-Package: com.zog.tex.contracts.bib.model.entities,
- com.zog.tex.contracts.bib.model.exceptions,
- com.zog.tex.contracts.bib.model.services,
- com.zog.tex.contracts.bib.tokenization.enities,
- com.zog.tex.contracts.bib.tokenization.services,
- com.zog.tex.contracts.resources.services,
- com.zog.tex.contracts.util.nanoservice
-Import-Package: org.osgi.framework,
- org.osgi.util.tracker;version="1.5.2"
+Export-Package: com.zog.tex.bib.contracts.model.entities,
+ com.zog.tex.bib.contracts.model.exceptions,
+ com.zog.tex.bib.contracts.model.services,
+ com.zog.tex.bib.contracts.tokenization.entities,
+ com.zog.tex.bib.contracts.tokenization.services
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.zog.core.contracts

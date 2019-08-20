@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ZOG Core Contracts and Utils
+Bundle-SymbolicName: com.zog.core.contracts;singleton:=true
+Bundle-Version: 0.0.0
+Bundle-Vendor: ZOG
+Automatic-Module-Name: com.zog.core.contracts
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-ActivationPolicy: lazy
+Import-Package: org.osgi.framework,
+ org.osgi.util.tracker;version="1.5.2"
+Export-Package: com.zog.core.contracts.resources.nanoservices,
+ com.zog.core.contracts.resources.exceptions,
+ com.zog.core.osgi.bundles,
+ com.zog.core.osgi.nanoservices

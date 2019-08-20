@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
+import com.zog.tex.bib.contracts.model.entities.BibEntry;
+import com.zog.tex.bib.contracts.model.entities.BibModel;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
+import com.zog.tex.bib.contracts.tokenization.entities.BibToken;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 import com.zog.tex.bib.model.Activator;
-import com.zog.tex.contracts.bib.model.entities.BibEntry;
-import com.zog.tex.contracts.bib.model.entities.BibModel;
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.bib.tokenization.enities.BibToken;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
 
 public class BibModelServiceImpl implements BibModelService {
 

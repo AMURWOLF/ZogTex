@@ -7,10 +7,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zog.tex.contracts.bib.model.exceptions.BibParseException;
-import com.zog.tex.contracts.bib.tokenization.enities.BibToken;
-import com.zog.tex.contracts.bib.tokenization.enities.BibTokenType;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
+import com.zog.tex.bib.contracts.model.exceptions.BibParseException;
+import com.zog.tex.bib.contracts.tokenization.entities.BibToken;
+import com.zog.tex.bib.contracts.tokenization.entities.BibTokenType;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 
 public class BibTokenServiceImpl implements BibTokenService {
 	

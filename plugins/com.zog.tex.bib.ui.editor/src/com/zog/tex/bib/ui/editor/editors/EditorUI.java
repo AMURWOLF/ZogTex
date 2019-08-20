@@ -26,13 +26,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableColumn;
 
+import com.zog.tex.bib.contracts.model.entities.BibEntry;
+import com.zog.tex.bib.contracts.model.entities.BibModel;
+import com.zog.tex.bib.contracts.model.entities.BibProp;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
+import com.zog.tex.bib.contracts.tokenization.entities.BibToken;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 import com.zog.tex.bib.ui.editor.Activator;
-import com.zog.tex.contracts.bib.model.entities.BibEntry;
-import com.zog.tex.contracts.bib.model.entities.BibModel;
-import com.zog.tex.contracts.bib.model.entities.BibProp;
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.bib.tokenization.enities.BibToken;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 import java.io.File;

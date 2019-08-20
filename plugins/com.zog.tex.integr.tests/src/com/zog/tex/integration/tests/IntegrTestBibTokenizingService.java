@@ -8,30 +8,30 @@ import java.util.Iterator;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.zog.tex.contracts.bib.tokenization.enities.BibToken;
-import com.zog.tex.contracts.bib.tokenization.enities.BibTokenType;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
-import com.zog.tex.contracts.resources.services.ResourceStreamService;
+import com.zog.core.contracts.resources.nanoservices.ResourceStreamService;
+import com.zog.core.osgi.nanoservices.TrackerUtil;
+import com.zog.tex.bib.contracts.tokenization.entities.BibToken;
+import com.zog.tex.bib.contracts.tokenization.entities.BibTokenType;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 
 public class IntegrTestBibTokenizingService {
 	
 	private BibTokenService bibTokenService;
 	private ResourceStreamService resourceStreamService;
+	private static String pathToBibFile = "bib/testsrc.bib";
 	
 	@Before
 	public void setup() {
-		var thisClass = IntegrTestResourcesServices.class;
-		
 		var tokenServClass = BibTokenService.class;
-		bibTokenService = TrackerUtil.getServiceByTracker(thisClass, tokenServClass);
+		bibTokenService = TrackerUtil.getServiceByTracker(this.getClass(), tokenServClass);
 		
 		var streamServClass = ResourceStreamService.class;
-		resourceStreamService = TrackerUtil.getServiceByTracker(thisClass, streamServClass);
+		resourceStreamService = TrackerUtil.getServiceByTracker(this.getClass(), streamServClass);
 	}
 	
 	@Test
 	public void testToken() {
-		InputStream bibFileStream = resourceStreamService.getStream("bib/testsrc.bib");
+		InputStream bibFileStream = resourceStreamService.getStream(this.getClass(), pathToBibFile);
 		Iterable<BibToken> bibTokens = bibTokenService.tokenize(bibFileStream);
 
 		Iterator<BibToken> i = bibTokens.iterator();

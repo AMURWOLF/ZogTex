@@ -12,10 +12,10 @@ import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+import com.zog.tex.bib.contracts.model.entities.BibModel;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 import com.zog.tex.bib.ui.editor.Activator;
-import com.zog.tex.contracts.bib.model.entities.BibModel;
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
 
 
 public class BibEditor extends EditorPart implements PropertyChangeListener {

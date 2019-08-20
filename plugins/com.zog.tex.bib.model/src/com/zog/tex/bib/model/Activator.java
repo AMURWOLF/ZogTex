@@ -3,12 +3,12 @@ package com.zog.tex.bib.model;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+import com.zog.core.contracts.resources.nanoservices.ResourceStreamService;
+import com.zog.core.osgi.nanoservices.NanoservicesRegistry;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
+import com.zog.tex.bib.contracts.tokenization.services.BibTokenService;
 import com.zog.tex.bib.model.services.BibModelServiceImpl;
 import com.zog.tex.bib.tokenizing.services.BibTokenServiceImpl;
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.bib.tokenization.services.BibTokenService;
-import com.zog.tex.contracts.resources.services.ResourceStreamService;
-import com.zog.tex.contracts.util.nanoservice.NanoservicesRegistry;
 
 public class Activator implements BundleActivator {
 

@@ -6,8 +6,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import com.zog.tex.bib.contracts.model.entities.BibEntry;
 import com.zog.tex.bib.ui.editor.editors.BibEditor;
-import com.zog.tex.contracts.bib.model.entities.BibEntry;
 
 public class RemoveEntryHandler extends BibHandler {
 

@@ -6,30 +6,30 @@ import java.io.InputStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.zog.tex.contracts.bib.model.entities.BibEntry;
-import com.zog.tex.contracts.bib.model.entities.BibModel;
-import com.zog.tex.contracts.bib.model.services.BibModelService;
-import com.zog.tex.contracts.resources.services.ResourceStreamService;
+import com.zog.core.contracts.resources.nanoservices.ResourceStreamService;
+import com.zog.core.osgi.nanoservices.TrackerUtil;
+import com.zog.tex.bib.contracts.model.entities.BibEntry;
+import com.zog.tex.bib.contracts.model.entities.BibModel;
+import com.zog.tex.bib.contracts.model.services.BibModelService;
 
 public class IntegrTestBibParsingService {
 
 	private ResourceStreamService resourceStreamService;
 	private BibModelService parsingService;
+	private static String pathToBibFile = "bib/testsrc.bib";
 	
 	@Before
 	public void setup() {
-		var thisClass = IntegrTestResourcesServices.class;
-		
 		var streamServClass = ResourceStreamService.class;
-		resourceStreamService = TrackerUtil.getServiceByTracker(thisClass, streamServClass);
+		resourceStreamService = TrackerUtil.getServiceByTracker(this.getClass(), streamServClass);
 		
 		var parseServClass = BibModelService.class;
-		parsingService = TrackerUtil.getServiceByTracker(thisClass, parseServClass);		
+		parsingService = TrackerUtil.getServiceByTracker(this.getClass(), parseServClass);		
 	}
 	
 	@Test
 	public void testParse() throws Exception {
-		InputStream bibFileStream = resourceStreamService.getStream("bib/testsrc.bib");
+		InputStream bibFileStream = resourceStreamService.getStream(this.getClass(), pathToBibFile);
 		BibModel model = parsingService.parse(bibFileStream);
 
 		assertEquals(2, model.getEntries().size());
